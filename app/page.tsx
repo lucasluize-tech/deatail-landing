@@ -1,113 +1,215 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import ServiceCard from "@/app/ui/serviceCard";
+import toast from "react-hot-toast";
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "Best Value Detail",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const data = await fetch("/api/sendMail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (data.ok == false) {
+        toast.error("Failed to send message. Internal Server Error.");
+      }
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "Best Value Detail",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+    toast.success("Message sent! Check your Email for confirmation.");
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
+    <>
+      <header
+        className='hero bg-contain bg-no-repeat bg-bottom h-screen flex items-center justify-center text-center'
+        style={{ backgroundImage: "url('/bg-image.jpg')" }}>
+        <div className='bg-black bg-opacity-50 p-8 rounded-lg mb-64'>
+          <h1 className='text-5xl mb-4 font-serif shadow-sm'>
+            Experience the Ultimate Car Detailing
+          </h1>
+          <p className='text-lg mb-8 font-serif shadow-sm'>
+            <i>Professional, Reliable, and Affordable</i>
+          </p>
           <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
+            href='#services'
+            className='font-serif cta-button bg-green-500 text-black py-3 px-6 rounded font-semibold tracking-wide hover:scale-105 transition duration-300 ease-in-out'>
+            Get Started
           </a>
         </div>
-      </div>
+      </header>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
+      <main className='px-4 py-8 font-serif'>
+        <section id='services' className='text-center py-8 font-serif'>
+          <h2 className='text-4xl mb-6 font-semibold font-serif shadow-md'>
+            My Services
           </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+          <div className='flex flex-wrap justify-center gap-8'>
+            <ServiceCard
+              title='Premium Wash'
+              description='Exterior and interior wash.'
+              price='From $80*'
+              details={[
+                "Exterior hand wash and dry",
+                "Interior vacuuming",
+                "Window cleaning",
+                "Dashboard wipe down",
+                "add on wax for $30",
+              ]}
+            />
+            <ServiceCard
+              title='Best Value Detail'
+              description='Comprehensive detailing package.'
+              price='From $249*'
+              details={[
+                "Premium exterior wash and wax",
+                "Interior dusting and vacuuming",
+                "Upholstery shampoo",
+                "Full wash floor mats",
+                "Leather cleaning and conditioning",
+                "Trunk and cargo area cleaning",
+                "Spot cleaning",
+                "Tire and wheel detailing and dressing",
+                "Ceramic Protection",
+                "Interior Protection",
+                "Streak free windows",
+              ]}
+              highlight
+            />
+            <ServiceCard
+              title='Full Detail'
+              description='Complete detailing for your car.'
+              price='From $349*'
+              details={[
+                "Complete exterior and interior detailing",
+                "Steam Cleaning and Sanitizing",
+                "UV Protection",
+                "Full interior Extraction",
+                "Ceramic coating",
+                "Tire and wheel detailing and dressing",
+              ]}
+            />
+            <div className='w-full flex flex-col gap-4 text-center italic font-bold'>
+              <p>
+                * Final price may vary based on vehicle size, model and
+                condition.
+              </p>
+              <a
+                className='px-2 py-4 rounded bg-green-500 text-black hover:scale-105 transition duration-500 ease-in-out'
+                href='#contact'>
+                Book Now
+              </a>
+            </div>
+          </div>
+        </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        <section id='testimonials' className='py-8 bg-#2e2d2d-900 text-center'>
+          <h2 className='text-4xl mb-6'>What My Customers Say</h2>
+          <div className='flex items-center justify-start space-x-6 overflow-x-auto whitespace-nowrap'>
+            <Testimonial text='Perfection Personified!' author='David B.' />
+            <Testimonial text='Highly recommend!' author='Lorraine B.' />
+            <Testimonial text='Great job!' author='Dad' />
+            <Testimonial text='Excellent work!' author='Wayne C.' />
+            <Testimonial text='Very satisfied!' author='Customer E' />
+            <Testimonial text='Will be back!' author='Customer F' />
+            <Testimonial text='Top-notch!' author='Customer G' />
+            <Testimonial text='Impressive!' author='Customer H' />
+            <Testimonial text='Outstanding!' author='Customer I' />
+            <Testimonial text='Great service!' author='Customer J' />
+            {/* Add more testimonials */}
+          </div>
+        </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <section id='contact' className='py-8 text-center'>
+          <h2 className='text-4xl mb-6'>Get in Touch</h2>
+          <form onSubmit={handleSubmit} className='space-y-4 max-w-md mx-auto'>
+            <input
+              type='text'
+              name='name'
+              placeholder='Name'
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className='w-full p-3 rounded bg-gray-700 text-white'
+            />
+            <input
+              type='email'
+              name='email'
+              placeholder='Email'
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className='w-full p-3 rounded bg-gray-700 text-white'
+            />
+            <input
+              type='tel'
+              name='phone'
+              placeholder='Phone Number'
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className='w-full p-3 rounded bg-gray-700 text-white'
+            />
+            <select
+              name='service'
+              value={formData.service}
+              onChange={handleChange}
+              className='w-full p-3 rounded bg-gray-700 text-white'>
+              <option value='Premium Wash'>Premium Wash</option>
+              <option value='Best Value Detail'>Best Value Detail</option>
+              <option value='Full Detail'>Full Detail</option>
+            </select>
+            <textarea
+              name='message'
+              placeholder='Please enter vehicle details make, model, year, and car condition. Final Price will be based on the dirtiness of the vehicle.'
+              value={formData.message}
+              onChange={handleChange}
+              required
+              className='h-[150px] w-full p-3 rounded bg-gray-700 text-white'
+            />
+            <button
+              type='submit'
+              className='cta-button bg-green-500 text-black py-3 px-6 rounded'>
+              Send Message
+            </button>
+          </form>
+        </section>
+      </main>
+    </>
   );
 }
+
+const Testimonial = ({ text, author }: { text: string; author: string }) => (
+  <div className='p-4 bg-gray-700 rounded-lg shadow-lg bg-opacity-30'>
+    <p className='mb-2'>&quot;{text}&quot;</p>
+    <p className='font-bold'>- {author}</p>
+  </div>
+);
