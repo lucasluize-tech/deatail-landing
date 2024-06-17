@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ServiceCard from "@/app/ui/serviceCard";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -50,9 +51,9 @@ export default function Home() {
   return (
     <>
       <header
-        className='hero bg-contain bg-no-repeat bg-bottom h-screen flex items-center justify-center text-center'
+        className='hero bg-contain bg-no-repeat bg-bottom h-screen flex lg:items-start items-center justify-center text-center'
         style={{ backgroundImage: "url('/bg-image.jpg')" }}>
-        <div className='bg-black bg-opacity-50 p-8 rounded-lg mb-64'>
+        <div className='bg-black bg-opacity-50 p-8 rounded-lg mb-64 lg:mb'>
           <h1 className='text-5xl mb-4 font-serif shadow-sm'>
             Experience the Ultimate Car Detailing
           </h1>
@@ -61,18 +62,22 @@ export default function Home() {
           </p>
           <a
             href='#services'
-            className='font-serif cta-button bg-green-500 text-black py-3 px-6 rounded font-semibold tracking-wide hover:scale-105 transition duration-300 ease-in-out'>
+            className='font-serif cta-button bg-green-500 text-black 
+            py-3 px-6 rounded font-semibold tracking-wide hover:scale-105 transition duration-300 ease-in-out'
+            aria-label='Choose your car detailing services now'>
             Get Started
           </a>
         </div>
       </header>
 
       <main className='px-4 py-8 font-serif'>
-        <section id='services' className='text-center py-8 font-serif'>
+        <section
+          id='services'
+          className='flex items-center flex-col justify-center h-screen text-center py-16 font-serif'>
           <h2 className='text-4xl mb-6 font-semibold font-serif shadow-md'>
             My Services
           </h2>
-          <div className='flex flex-wrap justify-center gap-8'>
+          <ul className='flex flex-wrap justify-center gap-8'>
             <ServiceCard
               title='Premium Wash'
               description='Exterior and interior wash.'
@@ -98,7 +103,7 @@ export default function Home() {
                 "Trunk and cargo area cleaning",
                 "Spot cleaning",
                 "Tire and wheel detailing and dressing",
-                "Ceramic Protection",
+                "Hybrid Ceramic Coating",
                 "Interior Protection",
                 "Streak free windows",
               ]}
@@ -107,7 +112,7 @@ export default function Home() {
             <ServiceCard
               title='Full Detail'
               description='Complete detailing for your car.'
-              price='From $349*'
+              price='From $399*'
               details={[
                 "Complete exterior and interior detailing",
                 "Steam Cleaning and Sanitizing",
@@ -115,35 +120,81 @@ export default function Home() {
                 "Full interior Extraction",
                 "Ceramic coating",
                 "Tire and wheel detailing and dressing",
+                "Streak free windows",
+                "One hand Polishing",
               ]}
             />
-            <div className='w-full flex flex-col gap-4 text-center italic font-bold'>
+            <div className='w-full flex flex-col gap-4 text-center italic font-bold lg:items-center'>
               <p>
                 * Final price may vary based on vehicle size, model and
                 condition.
               </p>
               <a
-                className='px-2 py-4 rounded bg-green-500 text-black hover:scale-105 transition duration-500 ease-in-out'
-                href='#contact'>
+                className='lg:w-1/2 px-2 py-4 rounded bg-green-500 text-black hover:scale-105 transition duration-500 ease-in-out'
+                href='#contact'
+                aria-label='Book car detailing services now'>
                 Book Now
               </a>
             </div>
-          </div>
+          </ul>
         </section>
 
-        <section id='testimonials' className='py-8 bg-#2e2d2d-900 text-center'>
+        <section
+          id='about'
+          className='flex items-center flex-col justify-center min-h-screen text-center py-16 font-serif'>
+          <h2 className='text-4xl mb-6 font-semibold font-serif shadow-md'>
+            About Me
+          </h2>
+          <div className='max-w-3xl mx-auto mb-8'>
+            <p className='text-lg mb-4'>
+              With over a decade of Enthusiasm in professional car detailing,
+              I&apos;m passionate about bringing out the best in every vehicle I
+              touch. My journey began with a simple love for cars and has
+              evolved into a dedicated service that combines attention to detail
+              with precision.
+            </p>
+            <p className='text-lg mb-4'>
+              I use only the highest quality, eco-friendly products and
+              cutting-edge techniques to ensure your car not only looks stunning
+              but is also protected for the long haul. From nasty interiors to a
+              car that you will love to daily drive!
+            </p>
+            <p className='text-lg'>
+              My commitment to excellence and customer attention have earned me
+              a loyal clientele and Hopefully your are Next! Welcome to the UDX
+              Family, A Family owned and operated business.
+            </p>
+          </div>
+          <a
+            className='lg:w-1/3 px-4 py-4 rounded bg-green-500 text-black hover:scale-105 transition duration-500 ease-in-out font-bold'
+            href='#contact'
+            aria-label='Book professional car detailing services now'>
+            Book Your Detail
+          </a>
+        </section>
+
+        <section
+          id='testimonials'
+          className='lg:w-1/2 mx-auto py-8 bg-#2e2d2d-900 text-center'>
           <h2 className='text-4xl mb-6'>What My Customers Say</h2>
           <div className='flex items-center justify-start space-x-6 overflow-x-auto whitespace-nowrap'>
-            <Testimonial text='Perfection Personified!' author='David B.' />
-            <Testimonial text='Highly recommend!' author='Lorraine B.' />
-            <Testimonial text='Great job!' author='Dad' />
-            <Testimonial text='Excellent work!' author='Wayne C.' />
-            <Testimonial text='Very satisfied!' author='Customer E' />
-            <Testimonial text='Will be back!' author='Customer F' />
-            <Testimonial text='Top-notch!' author='Customer G' />
-            <Testimonial text='Impressive!' author='Customer H' />
-            <Testimonial text='Outstanding!' author='Customer I' />
-            <Testimonial text='Great service!' author='Customer J' />
+            <Testimonial
+              text="Dude, it's beautiful. Perfection personified."
+              author='David B.'
+              date='06/07/2024'
+              rating={5}
+              imageUrl='/David.png'
+              car='2022 Tesla Model 3'
+            />
+            <Testimonial
+              text="Thank you so much, Lu! The car looks and smells amazing! It's like I just bought it 🆕 🤍"
+              author='Lorraine B.'
+              date='06/14/2024'
+              rating={5}
+              imageUrl='/Lo.png'
+              car='2023 Tesla Model Y'
+            />
+
             {/* Add more testimonials */}
           </div>
         </section>
@@ -197,7 +248,7 @@ export default function Home() {
             />
             <button
               type='submit'
-              className='cta-button bg-green-500 text-black py-3 px-6 rounded'>
+              className='cta-button bg-green-500 font-bold text-black py-3 px-6 rounded'>
               Send Message
             </button>
           </form>
@@ -207,9 +258,58 @@ export default function Home() {
   );
 }
 
-const Testimonial = ({ text, author }: { text: string; author: string }) => (
-  <div className='p-4 bg-gray-700 rounded-lg shadow-lg bg-opacity-30'>
-    <p className='mb-2'>&quot;{text}&quot;</p>
-    <p className='font-bold'>- {author}</p>
+// const Testimonial = ({ text, author }: { text: string; author: string }) => (
+//   <div className='p-4 bg-gray-700 rounded-lg shadow-lg bg-opacity-30 mb-6'>
+//     <p className='mb-2'>&quot;{text}&quot;</p>
+//     <p className='font-bold'>- {author}</p>
+//   </div>
+// );
+
+const Testimonial = ({
+  text,
+  author,
+  date,
+  rating,
+  imageUrl,
+  car,
+}: {
+  text: string;
+  author: string;
+  date: string;
+  rating: number;
+  imageUrl: string;
+  car: string;
+}) => (
+  <div className='p-4 bg-gray-800 rounded-lg shadow-lg mb-6 w-60 h-60 flex flex-col relative'>
+    <div className='flex items-center mb-2'>
+      <Image
+        src={imageUrl}
+        alt={author}
+        width={40}
+        height={40}
+        className='w-10 h-10 rounded-full mr-3'
+      />
+      <p className='font-bold text-white text-left'>{author}</p>
+    </div>
+    <p className='mb-4 text-gray-300 text-sm text-left break-words text-wrap '>
+      &quot;{text}&quot;
+    </p>
+    <p className='text-xs text-gray-400 text-left font-semibold'>{car}</p>
+    <div className='flex justify-between items-end mt-auto'>
+      <div className='flex'>
+        {[...Array(5)].map((_, i) => (
+          <svg
+            key={i}
+            className={`w-4 h-4 ${
+              i < rating ? "text-yellow-400" : "text-gray-500"
+            }`}
+            fill='currentColor'
+            viewBox='0 0 20 20'>
+            <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z' />
+          </svg>
+        ))}
+      </div>
+      <p className='text-xs text-gray-400'>{date}</p>
+    </div>
   </div>
 );
