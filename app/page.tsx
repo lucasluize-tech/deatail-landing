@@ -157,13 +157,13 @@ export default function Home() {
 
         <section
           id='testimonials'
-          className='lg:w-1/2 px-4 mx-auto py-8 bg-#2e2d2d-900 text-center'>
+          className='w-full mx-auto py-8 text-center bg-[#1f1f1f] rounded-lg bg-opacity-20'>
           <h2 className='text-4xl mb-12'>
             <span className='bg-clip-text text-transparent bg-gradient-to-t from-white to-gray-600'>
               What my Customers Say
             </span>
           </h2>
-          <div className='flex items-center justify-start space-x-6 overflow-x-auto whitespace-nowrap'>
+          <div className='flex items-center justify-start space-x-6 overflow-x-auto whitespace-nowrap px-4'>
             <Testimonial
               text="Dude, it's beautiful. Perfection personified."
               author='David B.'
@@ -179,6 +179,14 @@ export default function Home() {
               rating={5}
               imageUrl='/Lo.png'
               car='2023 Tesla Model Y'
+            />
+            <Testimonial
+              text="Exeeded my expectations! I'm so happy with the results. Thank you! 🙏🏼"
+              author='Lise L.'
+              date='05/28/2024'
+              rating={5}
+              imageUrl='/lise.png'
+              car='2012 Nissan Xterra Pro-4X'
             />
 
             {/* Add more testimonials */}
