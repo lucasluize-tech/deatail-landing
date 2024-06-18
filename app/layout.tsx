@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "UDX - Ultimate Detailing Experience",
+  title: "LDX - Ultimate Detailing Experience",
   description:
     "Professional auto detailing services near me, ceramic coating, interior car cleaning, and more!",
   creator: "Lucas Santos Luize | lucasluize.com",

@@ -41,7 +41,7 @@ export default function Home() {
           </button>
           <Image
             src='/bg-image.jpg'
-            alt='Luxurious Detailed Black car'
+            alt='Professional car detailing service'
             width={400}
             height={400}
             className='mx-auto sm:w-4/5 lg:w-full'
@@ -143,7 +143,7 @@ export default function Home() {
             </p>
             <p className='text-lg'>
               My commitment to excellence and customer attention have earned me
-              a loyal clientele and Hopefully your are Next! Welcome to the UDX
+              a loyal clientele and Hopefully you are Next! Welcome to the UDX
               Family, A Family owned and operated business.
             </p>
           </div>
