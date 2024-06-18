@@ -29,7 +29,6 @@ const ServiceCard = ({
         border: "2px solid white",
         boxShadow: "0 0 15px white",
         borderRadius: "10px",
-        position: "relative",
         overflow: "hidden",
       }}>
       <div
@@ -48,12 +47,9 @@ const ServiceCard = ({
         <p className='font-bold mb-4'>{price}</p>
         {expanded && (
           <ul className='list-disc list-inside mb-4'>
-            {details.map(
-              (detail, index) => (
-                <li key={index}>{detail}</li>
-              ),
-              <p className='text-black font-bold text-xl'>⬆️</p>
-            )}
+            {details.map((detail, index) => (
+              <li key={index}>{detail}</li>
+            ))}
           </ul>
         )}
         {expanded && <div className='font-bold text-black '>⬆️</div>}
