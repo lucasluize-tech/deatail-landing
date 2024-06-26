@@ -34,7 +34,7 @@ export default function RootLayout({
             },
           }}
         />
-        <div className='bg-#2e2d2d-900 text-white min-h-screen px-4 py-8 font-serif mx-auto'>
+        <div className='bg-black text-white min-h-screen px-4 py-8 font-serif mx-auto'>
           {children}
         </div>
       </body>

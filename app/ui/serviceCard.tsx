@@ -52,13 +52,41 @@ const ServiceCard = ({
             ))}
           </ul>
         )}
-        {expanded && <div className='font-bold text-black '>⬆️</div>}
-        {!expanded && (
-          <div className='flex flex-col items-center cta-button text-green-600'>
-            <p className='px-4'>details</p>
-            <p className='px-4'>⬇</p>
-          </div>
-        )}
+        <div className='flex flex-col items-center cta-button'>
+          {expanded ? (
+            <>
+              <svg
+                className='w-6 h-6 text-black'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+                xmlns='http://www.w3.org/2000/svg'>
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M5 15l7-7 7 7'></path>
+              </svg>
+              <p className='px-4 text-black font-bold'>less</p>
+            </>
+          ) : (
+            <>
+              <p className='px-4 text-green-600 font-bold'>details</p>
+              <svg
+                className='w-6 h-6 text-green-600'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+                xmlns='http://www.w3.org/2000/svg'>
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M19 9l-7 7-7-7'></path>
+              </svg>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

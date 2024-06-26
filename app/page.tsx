@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <header className='hero bg-contain bg-no-repeat bg-bottom h-screen flex lg:items-start items-center justify-center text-center'>
-        <div className='bg-black bg-opacity-50 p-8 rounded-lg lg:mb'>
+        <div className='bg-[black] bg-opacity-50 p-8 rounded-lg lg:mb'>
           <h1 className='text-6xl mb-4 font-serif shadow-sm'>
             <span className='bg-clip-text text-transparent bg-gradient-to-t from-white to-gray-600'>
               Experience the Ultimate Car Detailing
@@ -33,7 +33,7 @@ export default function Home() {
           <button className='mb-14'>
             <a
               href='#services'
-              className='font-serif cta-button bg-green-500 text-black
+              className='font-serif cta-button bg-green-500 text-[black]
               py-3 px-6 rounded font-semibold tracking-wide transition duration-300 ease-in-out hover:bg-green-700 hover:text-gray-800'
               aria-label='Choose your car detailing services now'>
               Get Started
@@ -111,7 +111,7 @@ export default function Home() {
               * Final price may vary based on vehicle size, model and condition.
             </p>
             <a
-              className='lg:w-1/2 px-2 mx-2 py-4 rounded bg-green-500 text-black hover:scale-105 transition duration-500 ease-in-out font-bold text-md italic'
+              className='lg:w-1/2 px-2 mx-2 py-4 rounded bg-green-500 text-[black] hover:scale-105 transition duration-500 ease-in-out font-bold text-md italic'
               href='#contact'
               aria-label='Book car detailing services now'>
               Book Now
@@ -148,7 +148,7 @@ export default function Home() {
             </p>
           </div>
           <a
-            className='w-full lg:w-1/3 px-4 py-4 rounded bg-green-500 text-black hover:scale-105 transition duration-500 ease-in-out italic font-bold'
+            className='w-full lg:w-1/3 px-4 py-4 rounded bg-green-500 text-[black] hover:scale-105 transition duration-500 ease-in-out italic font-bold'
             href='#contact'
             aria-label='Book professional car detailing services now'>
             Book Your Detail
